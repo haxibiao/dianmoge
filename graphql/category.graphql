@@ -1,0 +1,151 @@
+query specialCategoriesQuery {
+	categories(filter: SPECIAL, limit: 11) {
+		id
+		name
+		logo
+		logo_app
+	}
+}
+
+query topCategoriesQuery($offset: Int) {
+	categories(offset: $offset, limit: 12) {
+		id
+		name
+		logo
+		count_follows
+		followed
+		description
+	}
+}
+
+# COMMENTED/HOT/LATEST
+query categoryQuery($id: Int!, $order: ArticleOrder!, $offset: Int) {
+	category(id: $id) {
+		id
+		name
+		logo
+		user {
+			id
+			name
+			avatar
+		}
+		followed
+		count_articles
+		description
+		count_follows
+		count_authors
+		authors {
+			id
+			name
+			avatar
+		}
+		admins {
+			id
+			name
+			avatar
+		}
+	}
+	articles(category_id: $id, order: $order, offset: $offset) {
+		id
+		type
+		title
+		description
+		has_image
+		images
+		cover
+		time_ago
+		user {
+			id
+			name
+			avatar
+		}
+		hits
+		count_replies
+		count_tips
+		count_likes
+	}
+}
+
+query categoryAdminsQuery($id: Int!, $offset: Int) {
+	users(category_id: $id, offset: $offset, filter: CATE_ADMINS) {
+		id
+		name
+		avatar
+	}
+}
+
+query categoryAuthorsQuery($id: Int!, $offset: Int) {
+	users(category_id: $id, offset: $offset, filter: CATE_AUTHORS) {
+		id
+		name
+		avatar
+	}
+}
+
+query categoryFollowersQuery($id: Int!, $offset: Int) {
+	users(category_id: $id, offset: $offset, filter: CATE_FOLLOWERS) {
+		id
+		name
+		avatar
+	}
+}
+
+mutation createCategoryMutation(
+	$name: String!
+	$logo: String!
+	$description: String!
+	$allow_submit: Boolean!
+	$need_approve: Boolean!
+	$admin_uids: String
+) {
+	createCategory(
+		name: $name
+		logo: $logo
+		description: $description
+		allow_submit: $allow_submit
+		need_approve: $need_approve
+		admin_uids: $admin_uids
+	) {
+		id
+		name
+		name_en
+		logo
+		description
+		allow_submit
+		need_approve
+	}
+}
+
+mutation editCategoryMutation($id: Int!, $name: String!, $logo: String!, $description: String!, $allow_submit: Boolean!, $need_approve: Boolean!) {
+	editCategory(id: $id, name: $name, logo: $logo, description: $description, allow_submit: $allow_submit, need_approve: $need_approve) {
+		id
+		name
+		name_en
+		logo
+		description
+		allow_submit
+		need_approve
+	}
+}
+
+mutation deleteCategoryMutation($id: Int!) {
+	deleteCategory(id: $id) {
+		id
+	}
+}
+
+mutation editCategoryAdminsMutation($id: Int!, $admin_uids: String) {
+	editCategoryAdmins(id: $id, admin_uids: $admin_uids) {
+		id
+		name
+		name_en
+		logo
+		description
+		allow_submit
+		need_approve
+		admins {
+			id
+			name
+		}
+	}
+}

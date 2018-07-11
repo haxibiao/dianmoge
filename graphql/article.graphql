@@ -1,0 +1,263 @@
+# 文章打赏
+mutation tipArticleMutation($id: Int!, $amount: Int!, $message: String) {
+	tipArticle(id: $id, amount: $amount, message: $message) {
+		id
+		title
+	}
+}
+
+# 创建文章
+mutation createdArticleMutation($title: String!, $body: String!, $is_publish: Boolean) {
+	createArticle(title: $title, body: $body, is_publish: $is_publish) {
+		id
+		title
+		status
+		body
+	}
+}
+
+# 编辑文章
+mutation editArticleMutation($id: Int!, $title: String!, $body: String!, $is_publish: Boolean) {
+	editArticle(id: $id, title: $title, body: $body, is_publish: $is_publish) {
+		id
+		type
+		title
+		status
+		body
+	}
+}
+
+# 发布文章
+mutation publishArticleMutation($id: Int!) {
+	publishArticle(id: $id) {
+		id
+		title
+		status
+		body
+	}
+}
+
+# 转为私密
+mutation unpublishArticleMutation($id: Int!) {
+	unpublishArticle(id: $id) {
+		id
+		title
+		status
+		body
+	}
+}
+
+# 移动文章
+mutation moveArticleMutation($article_id: Int!, $collection_id: Int!) {
+	moveArticle(article_id: $article_id, collection_id: $collection_id) {
+		id
+		title
+		status
+		body
+		collection {
+			id
+			name
+		}
+	}
+}
+
+# 收藏文章
+mutation favoriteArticleMutation($article_id: Int!, $undo: Boolean) {
+	favoriteArticle(article_id: $article_id, undo: $undo) {
+		id
+		favorited
+	}
+}
+
+# 查询文章内容
+query articleContentQuery($id: Int!) {
+	article(id: $id) {
+		id
+		type
+		title
+		status
+		body
+	}
+}
+
+# 文章排行
+query RankingArticleQuery($in_days: Int!) {
+	articles(in_days: $in_days, order: HOT) {
+		id
+		type
+		title
+		status
+		hits
+		body
+		time_ago
+		has_image
+		images
+		cover
+		hits
+		count_likes
+		count_replies
+		count_tips
+		user {
+			id
+			name
+			avatar
+		}
+		category {
+			id
+			name
+			logo
+		}
+	}
+}
+
+query trashQuery($id: Int!) {
+	article(id: $id) {
+		id
+		type
+		title
+		body
+	}
+}
+
+mutation reportArticleMutation($id: Int!, $type: String!, $reason: String) {
+	reportArticle(id: $id, type: $type, reason: $reason) {
+		id
+	}
+}
+
+query articleQuery($id: Int!) {
+	article(id: $id) {
+		id
+		type
+		title
+		body
+		video_url
+		user {
+			id
+			name
+			avatar
+			introduction
+			count_articles
+			count_likes
+			tip_words
+			followed_status
+		}
+		time_ago
+		count_words
+		hits
+		liked
+		favorited
+		count_likes
+		count_tips
+		count_replies
+		collection {
+			id
+			name
+		}
+		categories {
+			id
+			name
+		}
+		tipedUsers {
+			id
+			name
+			avatar
+		}
+	}
+}
+
+query articleLikesQuery($id: Int!) {
+	article(id: $id) {
+		id
+		type
+		liked
+		count_likes
+	}
+}
+
+query draftQuery($id: Int!) {
+	article(id: $id) {
+		id
+		type
+		title
+		body
+		time_ago
+		count_words
+	}
+}
+
+query topArticleWithImagesQuery {
+	articles(filter: TOP, limit: 7) {
+		id
+		type
+		title
+		top_image
+	}
+}
+
+query hotArticlesQuery($offset: Int) {
+	articles(offset: $offset) {
+		id
+		type
+		title
+		has_image
+		images
+		cover
+		description
+		time_ago
+		user {
+			id
+			name
+			avatar
+		}
+		category {
+			id
+			name
+			logo
+		}
+		hits
+		count_likes
+		count_replies
+		count_tips
+	}
+}
+
+query recommendArticlesQuery($offset: Int, $limit: Int) {
+	articles(offset: $offset, limit: $limit) {
+		id
+		type
+		title
+		description
+		time_ago
+		has_image
+		images
+		cover
+		user {
+			avatar
+			name
+			id
+		}
+		category {
+			id
+			name
+			logo
+		}
+		hits
+		count_likes
+		count_replies
+		count_tips
+	}
+}
+
+query queryArticleRequesRecommend($id: Int) {
+	user(id: $id) {
+		id
+		categories(filter: RECOMMEND) {
+			id
+			name
+			count_articles
+			count_follows
+			logo
+		}
+	}
+}

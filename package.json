@@ -1,0 +1,70 @@
+{
+  "name": "ainicheng",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "bash ./fix_npm.sh && rimraf ./node_modules/.cache/babel-loader && node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.7",
+    "apollo-cache-inmemory": "^1.2.2",
+    "apollo-client": "^2.3.2",
+    "appcenter": "^1.6.0",
+    "appcenter-analytics": "^1.6.0",
+    "appcenter-crashes": "^1.6.0",
+    "bugsnag-react-native": "2.9.3",
+    "graphql": "^0.13.2",
+    "immutable": "^3.8.2",
+    "react": "^16.3.0-alpha.1",
+    "react-apollo": "^2.1.4",
+    "react-native": "0.55.3",
+    "react-native-animatable": "^1.2.4",
+    "react-native-background-upload": "^4.4.0",
+    "react-native-code-push": "^5.3.4",
+    "react-native-gifted-chat": "^0.4.3",
+    "react-native-highlight-words": "^1.0.1",
+    "react-native-image-crop-picker": "0.20.0",
+    "react-native-image-picker": "^0.26.10",
+    "react-native-image-zoom-viewer": "^2.2.5",
+    "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-modal": "^6.0.0",
+    "react-native-popup-menu": "^0.12.2",
+    "react-native-progress": "^3.5.0",
+    "react-native-render-html": "^3.9.0",
+    "react-native-root-toast": "^3.0.1",
+    "react-native-scrollable-tab-view": "^0.8.0",
+    "react-native-sortable-listview": "^0.2.8",
+    "react-native-spinkit": "^1.1.1",
+    "react-native-swiper": "^1.5.8",
+    "react-native-vector-icons": "^4.5.0",
+    "react-native-video": "^2.1.1",
+    "react-native-video-controls": "^2.2.1",
+    "react-native-webview-bridge": "^0.33.0",
+    "react-native-zss-rich-text-editor": "^1.1.0",
+    "react-navigation": "^1.0.0-beta.27",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-effex": "^1.1.2"
+  },
+  "devDependencies": {
+    "babel-jest": "23.0.0-alpha.0",
+    "babel-plugin-inline-import-graphql-ast": "^2.3.6",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.2",
+    "react-test-renderer": "^16.3.0-alpha.1"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFiles": [
+      "./node_modules/appcenter/test/AppCenterMock.js",
+      "./node_modules/appcenter-analytics/test/AppCenterAnalyticsMock.js",
+      "./node_modules/appcenter-crashes/test/AppCenterCrashesMock.js"
+    ]
+  }
+}
