@@ -1,6 +1,3 @@
 <resources>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">3ZKVNwn-ZI51M39cUMjT-zZdWzgt44729bcd-65c1-4f12-8e60-bc400cd168b8</string>
-    <string name="app_name">点墨閣</string>
-    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true">ALWAYS_SEND</string>
-    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true">ALWAYS_SEND</string>
+    <string name="app_name">dianmoge</string>
 </resources>

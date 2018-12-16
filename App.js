@@ -1,128 +1,47 @@
-import React from "react";
-import { Platform, StatusBar, StyleSheet, View, Text, YellowBox, Dimensions, Image } from "react-native";
-import codePush from "react-native-code-push";
-import ApolloApp from "./ApolloApp";
-import Colors from "./constants/Colors";
-import Config from "./constants/Config";
-import { SpinnerLoading } from "./components/Pure";
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
 
-//redux
-import { Provider, connect } from "react-redux";
-import store from "./store";
-import actions from "./store/actions";
-import { Storage, ItemKeys } from "./store/localStorage";
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
-//menu
-import { MenuProvider } from "react-native-popup-menu";
+import Video from 'react-native-video';
 
-const { width, height } = Dimensions.get("window");
-
-class App extends React.Component {
-  state = {
-    isLoadingComplete: false
-  };
-
-  customBackHandler = instance => {
-    if (instance.isMenuOpen()) {
-      instance.closeMenu();
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  async componentWillMount() {
-    YellowBox.ignoreWarnings(["Task orphaned"]);
-    await this._loadResourcesAsync();
-  }
-
+type Props = {};
+export default class App extends Component<Props> {
   render() {
-    let { isLoadingComplete } = this.state;
     return (
       <View style={styles.container}>
-        <MenuProvider backHandler={this.customBackHandler}>
-          <Provider store={store}>
-            <ApolloApp onReady={this._handleFinishLoading} />
-          </Provider>
-        </MenuProvider>
-        {!isLoadingComplete && (
-          <View style={styles.appLaunch}>
-            {Platform.OS === "ios" && <Image source={require("./assets/images/flight.gif")} style={styles.flight} />}
-            {Platform.OS === "android" && <SpinnerLoading type="9CubeGrid" />}
-            <View style={styles.appInfo}>
-              <View style={styles.appLogoWrap}>
-                {/**<Image source={require("./assets/images/appLogo.png")} style={styles.appLogo} />*/}
-                <Text style={styles.appName}>{Config.AppName}</Text>
-              </View>
-              <Text style={{ fontSize: 16, color: Colors.tintFontColor }}>{Config.AppSlogan}</Text>
-            </View>
-          </View>
-        )}
+        <Video
+          source={{ uri: 'https://1251052432.vod2.myqcloud.com/8ace3ab8vodgzp1251052432/387c97405285890783604113140/AuN8NmGAeFcA.mp4' }} // Can be a URL or a local file.
+          ref={ref => {
+            this.player = ref;
+          }} // Store reference
+          onBuffer={this.onBuffer} // Callback when remote video is buffering
+          onError={this.videoError} // Callback when video cannot be loaded
+          style={styles.backgroundVideo}
+        />
       </View>
     );
   }
-
-  _loadResourcesAsync = async () => {
-    let user = await Storage.getItem(ItemKeys.user);
-    if (user) {
-      store.dispatch(actions.signIn(user));
-    }
-  };
-
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
-
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
   },
-  appLaunch: {
-    width,
-    height,
-    position: "absolute",
+  backgroundVideo: {
+    position: 'absolute',
     top: 0,
     left: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff"
-  },
-  flight: {
-    width,
-    height: width * 0.68,
-    resizeMode: "cover"
-  },
-  appInfo: {
-    marginVertical: 30,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  appLogoWrap: {
-    // padding: 4,
-    // borderWidth: 0.5,
-    // borderColor: Colors.lightBorderColor,
-    // borderRadius: 5,
-    marginRight: 15
-  },
-  appName: {
-    fontSize: 22,
-    color: Colors.themeColor,
-    fontWeight: "300"
-  },
-  appLogo: {
-    width: 50,
-    height: 50,
-    resizeMode: "cover"
+    bottom: 0,
+    right: 0
   }
 });
-
-export default codePush(App);
