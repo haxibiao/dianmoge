@@ -3,6 +3,7 @@ package com.dianmoge;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGestureHandlerPackage(),
             new RNFetchBlobPackage(),
             new WebViewBridgePackage(),
             new RNViewShotPackage(),

@@ -1,4 +1,4 @@
 {
-  "presets": ["react-native"],
-  "plugins": ["inline-import-graphql-ast"]
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": ["import-graphql"]
 }

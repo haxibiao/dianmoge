@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-gesture-handler')
     compile project(':rn-fetch-blob')
     compile project(':react-native-webview-bridge')
     compile project(':react-native-view-shot')

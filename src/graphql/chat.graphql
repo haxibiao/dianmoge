@@ -1,0 +1,73 @@
+query chatQuery($with_id: Int!) {
+  chat(with_id: $with_id) {
+    id
+  }
+}
+
+query chatsQuery($offset: Int) {
+  user {
+    id
+    chats(offset: $offset) {
+      id
+      lastMessage {
+        id
+        message
+      }
+      withUser {
+        id
+        name
+        avatar
+      }
+      unreads
+      time_ago
+      updated_at
+    }
+  }
+}
+
+mutation createChatMutation($id: Int!) {
+  createChat(with_id: $id) {
+    id
+    withUser {
+      id
+      name
+      avatar
+    }
+  }
+}
+
+query messagesQuery($chat_id: Int, $offset: Int) {
+  messages(chat_id: $chat_id, offset: $offset) {
+    id
+    message
+    time_ago
+    created_at
+    user {
+      id
+      name
+      avatar
+    }
+    images {
+      id
+      url
+    }
+  }
+}
+
+mutation sendMessageMutation($chat_id: Int!, $message: String!) {
+  sendMessage(chat_id: $chat_id, message: $message) {
+    id
+    message
+    time_ago
+    created_at
+    user {
+      id
+      name
+      avatar
+    }
+    images {
+      id
+      url
+    }
+  }
+}

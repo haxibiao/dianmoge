@@ -1,0 +1,2 @@
+# echo "修复打包android的 staging版本没有bundle js的问题，也许是新android studio 3.2的坑"
+# react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res

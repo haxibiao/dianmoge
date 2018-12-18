@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/SpaceMono-Regular.ttf",
+      "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
+    },
+    {
+      "path": "src/assets/fonts/iconfont.ttf",
+      "sha1": "7afccd4cd915d154f7688f691efdaa27f4ee6333"
+    }
+  ]
+}
