@@ -75,7 +75,7 @@ class Player extends React.PureComponent {
 	onAudioFocusChanged = (event: { hasAudioFocus: boolean }) => {
 		console.log('onAudioFocusChanged ...', event);
 		console.log('video url:', this.props.source);
-		this.video.reset();
+		// this.video.reset();
 		this.video.seek(0);
 		// if (!this.state.paused && !event.hasAudioFocus) {
 		// 	this.setState({ paused: true });
