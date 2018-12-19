@@ -35,3 +35,6 @@ include ':appcenter'
 project(':appcenter').projectDir = new File(rootProject.projectDir, '../node_modules/appcenter/android')
 
 include ':app'
+
+include ':rnpackages'
+project(':rnpackages').projectDir = new File(rootProject.projectDir, '../../libs/android/rnpackages')

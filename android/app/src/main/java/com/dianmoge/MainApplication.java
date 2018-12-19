@@ -3,6 +3,9 @@ package com.dianmoge;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.haxibiao.rnpackages.RCTQRCodeImagePackage;
+import com.haxibiao.rnpackages.RCTVideoEditorPackage;
+import com.haxibiao.rnpackages.RCTVodUploaderReactPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
@@ -46,6 +49,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+
+            new RCTQRCodeImagePackage(),
+            new RCTVideoEditorPackage(),
+            new RCTVodUploaderReactPackage(),
+
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
            
             new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
