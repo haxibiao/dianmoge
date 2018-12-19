@@ -1,0 +1,36 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'dianmoge' do
+  pod 'AppCenter/Crashes', '~> 1.12.0'
+  pod 'AppCenter/Analytics', '~> 1.12.0'
+  pod 'AppCenterReactNativeShared', '~> 1.11.0'
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for dianmoge
+
+  
+
+  platform :ios, '9.0'
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
+  target 'dianmogeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'dianmoge-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for dianmoge-tvOS
+
+  target 'dianmoge-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
