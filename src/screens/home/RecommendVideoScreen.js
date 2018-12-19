@@ -69,7 +69,7 @@ class HotVideoScreen extends Component {
 											video={item}
 											index={index}
 											active={index == activeIndex}
-											isLoad={index <= activeIndex + 1 && index >= activeIndex - 1} //只预加载当前视频的后两个
+											isLoad={index <= activeIndex + 2 && index >= activeIndex - 2} //只预加载当前视频的后两个
 										/>
 									)}
 									getItemLayout={(data, index) => ({

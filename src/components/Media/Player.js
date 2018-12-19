@@ -20,7 +20,8 @@ class Player extends React.PureComponent {
 		if (nextProps.active !== this.props.active) {
 			if (nextProps.active) {
 				this.setState({ paused: false }, function() {
-					this.video.seek(0);
+					// this.video.seek(0);
+					console.log('video url:', this.props.source);
 				});
 			} else {
 				this.setState({ paused: true });
@@ -53,9 +54,10 @@ class Player extends React.PureComponent {
 					onAudioBecomingNoisy={this.onAudioBecomingNoisy}
 					onAudioFocusChanged={this.onAudioFocusChanged}
 					disableFocus={true}
+					useTextureView={false}
+					playWhenInactive={false}
 					repeat={true} // 是否重复播放
 					ignoreSilentSwitch="obey"
-					playWhenInactive
 				/>
 				{active && paused && <Iconfont name="play" size={60} color={Colors.shade1} style={{ opacity: 0.8 }} />}
 			</TouchableOpacity>
@@ -65,22 +67,27 @@ class Player extends React.PureComponent {
 	//有异常，应该暂停播放
 	onAudioBecomingNoisy = () => {
 		console.log('onAudioBecomingNoisy...');
+		console.log('video url:', this.props.source);
 		this.setState({ paused: true });
 	};
 
 	//失去声音聚焦，也暂停
 	onAudioFocusChanged = (event: { hasAudioFocus: boolean }) => {
 		console.log('onAudioFocusChanged ...', event);
-		if (!this.state.paused && !event.hasAudioFocus) {
-			this.setState({ paused: true });
-		}
+		console.log('video url:', this.props.source);
+		this.video.reset();
+		this.video.seek(0);
+		// if (!this.state.paused && !event.hasAudioFocus) {
+		// 	this.setState({ paused: true });
+		// }
 	};
 
 	control = () => {
 		this.setState(
 			prevState => ({ paused: !this.state.paused }),
 			() => {
-				this.video.seek(0);
+				console.log('video url:', this.props.source);
+				// this.video.seek(0);
 			}
 		);
 	};
