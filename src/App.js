@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text, YellowBox, Dimensions, Image } from 'react-native';
-// import codePush from 'react-native-code-push';
+import codePush from 'react-native-code-push';
 import Spinner from 'react-native-spinkit';
 import Orientation from 'react-native-orientation';
 
@@ -140,9 +140,9 @@ const styles = StyleSheet.create({
   version: { fontSize: 10, lineHeight: 20, color: Colors.lightFontColor }
 });
 
-// let codePushOptions = {
-//   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
-//   installMode: codePush.InstallMode.ON_NEXT_RESUME
-// };
-// export default codePush(codePushOptions)(App);
-export default App;
+let codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+  installMode: codePush.InstallMode.ON_NEXT_RESUME
+};
+export default codePush(codePushOptions)(App);
+// export default App;

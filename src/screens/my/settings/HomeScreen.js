@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Dimensions, Switch } from 'react-native';
-// import codePush from 'react-native-code-push';
+import codePush from 'react-native-code-push';
 
 import Screen from '../../Screen';
 import Config from '../../../constants/Config';
@@ -104,10 +104,10 @@ class HomeScreen extends Component {
 						</TouchableOpacity>
 						<TouchableOpacity
 							onPress={() => {
-								// codePush.sync({
-								// 	updateDialog: true,
-								// 	installMode: codePush.InstallMode.IMMEDIATE
-								// });
+								codePush.sync({
+									updateDialog: true,
+									installMode: codePush.InstallMode.IMMEDIATE
+								});
 							}}
 						>
 							<SettingItem itemName="版本更新" explain={'当前版本: ' + Config.AppVersion} />
