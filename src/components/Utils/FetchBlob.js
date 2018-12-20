@@ -8,15 +8,15 @@ function download({ url, scan, id, onSuccessed, onFailed }) {
 		console.log('dirs', dirs);
 		let options = {};
 		if (Platform.OS === 'android') {
-			let save_path = dirs.CacheDir + '/' + id + '.mp4';
 			options = {
-				path: save_path,
-				useDownloadManager: true
+				path: dirs.DCIMDir + '/' + id + '.mp4'
+				// useDownloadManager: true
 				// fileCache: true,
 				// appendExt: 'mp4'
 			};
 		} else {
 			options = {
+				// path: dirs.DocumentDir + '/' + id + '.mp4'
 				fileCache: true,
 				appendExt: 'mp4'
 			};
@@ -37,11 +37,20 @@ function download({ url, scan, id, onSuccessed, onFailed }) {
 						RNFetchBlob.fs.scanFile([{ path: res.path(), mime: 'video/mp4' }]);
 					}
 				}
-				// the temp file path
-				console.log('The file saved to ', res.path());
+				let filepath = res.path();
+				console.log('rn fetch file saved to ', filepath);
+
+				//TODO:: fetch-blob在0.57有bug,需要等待merge...
+				let file_exist = RNFetchBlob.fs
+					.exists(filepath)
+					.then(exist => {
+						console.log(`file ${exist ? '' : 'not'} exists`);
+					})
+					.catch(() => {});
+
 				LoadingProgress.hide();
 				onSuccessed && onSuccessed();
-				resolve(res.path());
+				resolve(filepath);
 			})
 			.catch(error => {
 				console.log('error', error);
