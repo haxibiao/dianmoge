@@ -14,6 +14,8 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+#import "VideoEditor.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -48,6 +50,19 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+
+  //  测试视频编辑添加水印
+// NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"mp4"];;
+// NSString *watermarkPath = [[NSBundle mainBundle] pathForResource:@"11" ofType:@"png"];;
+// VideoEditor *videoEditor = [[VideoEditor alloc] init];
+// 
+//  NSLog(@"video path: %@", videoPath);
+//  
+// [videoEditor setVideo:videoPath];
+// [videoEditor addWatermark: watermarkPath watermark2: watermarkPath];
+// [videoEditor exportVideo];
+
   return YES;
 }
 

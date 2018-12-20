@@ -291,9 +291,7 @@ class ShareCard extends Component {
 	};
 
 	shotQRcodeView = async () => {
-		console.log('this.shareShotQRcode', this.shareShotQRcode);
 		let shareShotView = await this.capture(this.shareShotQRcode);
-		console.log('shareShotView', shareShotView);
 		this.saveImage(shareShotView);
 		this.props.toggleVisible();
 	};
@@ -311,6 +309,7 @@ class ShareCard extends Component {
 	};
 
 	saveImage = uri => {
+		console.log('CameraRoll', CameraRoll);
 		CameraRoll.saveToCameraRoll(uri, 'photo');
 		Methods.toast('图片已保存至本地相册');
 	};

@@ -35,8 +35,6 @@ class DownloadProgress extends Component<Props, State> {
 
   render() {
     const { isVisible, progress, message } = this.state;
-    console.log('render');
-
     const view = isVisible ? (
       <View style={styles.container}>
         <View style={styles.wrap}>

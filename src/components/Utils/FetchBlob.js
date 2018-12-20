@@ -3,20 +3,25 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 function download({ url, scan, id, onSuccessed, onFailed }) {
 	return new Promise((resolve, reject) => {
-		console.log('download and scan? ', scan);
 		LoadingProgress.show();
-
 		let dirs = RNFetchBlob.fs.dirs;
-		RNFetchBlob.config({
-			// DCIMDir is in external storage
-			path: dirs.DCIMDir + '/' + id + '.mp4'
-
-			// this is much more performant.
-			// useDownloadManager: true,
-
-			// fileCache: true,
-			// appendExt: 'mp4'
-		})
+		console.log('dirs', dirs);
+		let options = {};
+		if (Platform.OS === 'android') {
+			let save_path = dirs.CacheDir + '/' + id + '.mp4';
+			options = {
+				path: save_path,
+				useDownloadManager: true
+				// fileCache: true,
+				// appendExt: 'mp4'
+			};
+		} else {
+			options = {
+				fileCache: true,
+				appendExt: 'mp4'
+			};
+		}
+		RNFetchBlob.config(options)
 			.fetch('GET', url, {
 				//some headers ..
 			})

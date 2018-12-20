@@ -1,35 +1,35 @@
-import React from "react";
-import { FlatList, StyleSheet, ScrollView, Text, View, Image, Dimensions, TouchableWithoutFeedback } from "react-native";
+import React from 'react';
+import { FlatList, StyleSheet, ScrollView, Text, View, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
 
-import Screen from "../Screen";
-import Carousel from "./Carousel";
-import { Iconfont } from "../../utils/Fonts";
-import { Colors, Methods } from "../../constants";
-import { Avatar, ContentEnd, LoadingMore, LoadingError, SpinnerLoading } from "../../components/Pure";
-import RecommendCategory from "./RecommendCategory";
+import Screen from '../Screen';
+import Carousel from './Carousel';
+import { Iconfont } from '../../utils/Fonts';
+import { Colors, Methods } from '../../constants';
+import { Avatar, ContentEnd, LoadingMore, LoadingError, SpinnerLoading } from '../../components/Pure';
+import RecommendCategory from './RecommendCategory';
 
-import { connect } from "react-redux";
-import actions from "../../store/actions";
-import { topCategoriesQuery } from "../../graphql/category.graphql";
-import { followCategoryMutation, userFollowedCategoriesQuery } from "../../graphql/user.graphql";
-import { Query, Mutation, compose, withApollo } from "react-apollo";
+import { connect } from 'react-redux';
+import actions from '../../store/actions';
+import { topCategoriesQuery } from '../../graphql/category.graphql';
+import { followCategoryMutation, userFollowedCategoriesQuery } from '../../graphql/user.graphql';
+import { Query, Mutation, compose, withApollo } from 'react-apollo';
 
-const { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get('window');
 
 class CategoriesScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      //当前tab页，点击tabbar跳转到顶部并刷新页面
-      tabBarOnPress: ({ scene, previousScene, jumpToIndex }) => {
-        let scrollToTop = navigation.getParam("scrollToTop", null);
-        if (scene.focused && scrollToTop) {
-          scrollToTop();
-        } else {
-          jumpToIndex(scene.index);
-        }
-      }
-    };
-  };
+  // static navigationOptions = ({ navigation }) => {
+  //   return {
+  //     //当前tab页，点击tabbar跳转到顶部并刷新页面
+  //     tabBarOnPress: ({ scene, previousScene, jumpToIndex }) => {
+  //       let scrollToTop = navigation.getParam("scrollToTop", null);
+  //       if (scene.focused && scrollToTop) {
+  //         scrollToTop();
+  //       } else {
+  //         jumpToIndex(scene.index);
+  //       }
+  //     }
+  //   };
+  // };
 
   constructor(props) {
     super(props);
@@ -108,7 +108,7 @@ class CategoriesScreen extends React.Component {
                     return <LoadingMore />;
                   }
                   return (
-                    <TouchableWithoutFeedback onPress={() => Methods.navigationDispatch(navigation, { routeName: "全部专题", key: "全部专题" })}>
+                    <TouchableWithoutFeedback onPress={() => Methods.navigationDispatch(navigation, { routeName: '全部专题', key: '全部专题' })}>
                       <View style={styles.refresh}>
                         <Iconfont name="fresh" size={15} color={Colors.themeColor} />
                         <Text style={styles.refreshText}>关注更多专题</Text>
@@ -129,7 +129,7 @@ class CategoriesScreen extends React.Component {
       <View style={styles.listHeader}>
         <Carousel navigation={navigation} />
         <View style={styles.flexRowCenter}>
-          <TouchableWithoutFeedback onPress={() => Methods.navigationDispatch(navigation, { routeName: "全部专题", key: "全部专题" })}>
+          <TouchableWithoutFeedback onPress={() => Methods.navigationDispatch(navigation, { routeName: '全部专题', key: '全部专题' })}>
             <View style={styles.entry}>
               <View style={styles.flexRowCenter}>
                 <View style={[styles.entryLabel, styles.center, { backgroundColor: Colors.themeColor }]}>
@@ -151,7 +151,7 @@ class CategoriesScreen extends React.Component {
     let category = item;
     let { navigation } = this.props;
     return (
-      <TouchableWithoutFeedback onPress={() => Methods.goContentScreen(navigation, { ...category, type: "category" })}>
+      <TouchableWithoutFeedback onPress={() => Methods.goContentScreen(navigation, { ...category, type: 'category' })}>
         <View style={styles.recommendItem}>
           <Avatar size={50} type="category" uri={category.logo} />
           <View style={styles.followInfo}>
@@ -178,7 +178,7 @@ class CategoriesScreen extends React.Component {
     if (login) {
       Methods.navigationDispatch(navigation, { routeName, key: routeName });
     } else {
-      Methods.navigationDispatch(navigation, { routeName: "登录注册", key: "登录注册", params: { login: true } });
+      Methods.navigationDispatch(navigation, { routeName: '登录注册', key: '登录注册', params: { login: true } });
     }
   };
 
@@ -199,12 +199,12 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.skinColor
   },
   center: {
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   flexRowCenter: {
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   listHeader: {
     borderBottomWidth: 6,
@@ -212,9 +212,9 @@ const styles = StyleSheet.create({
   },
   entry: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     height: 60,
     paddingHorizontal: 15
   },
@@ -232,8 +232,8 @@ const styles = StyleSheet.create({
   recommendItem: {
     height: 74,
     paddingHorizontal: 15,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.lightBorderColor
   },
@@ -246,9 +246,9 @@ const styles = StyleSheet.create({
     color: Colors.darkFontColor
   },
   refresh: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 10,
     paddingVertical: 10
   },

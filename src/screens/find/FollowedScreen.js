@@ -1,37 +1,37 @@
-import React from "react";
-import { FlatList, StyleSheet, ScrollView, Text, View, Image, Dimensions, TouchableOpacity, RefreshControl } from "react-native";
+import React from 'react';
+import { FlatList, StyleSheet, ScrollView, Text, View, Image, Dimensions, TouchableOpacity, RefreshControl } from 'react-native';
 
-import { Colors, Divice } from "../../constants";
-import Carousel from "./Carousel";
-import RecommendAuthors from "./RecommendAuthors";
-import NoteItem from "../../components/Article/NoteItem";
-import { ContentEnd, LoadingMore, LoadingError, SpinnerLoading } from "../../components/Pure";
-import Screen from "../Screen";
+import { Colors, Divice } from '../../constants';
+import Carousel from './Carousel';
+import RecommendAuthors from './RecommendAuthors';
+import NoteItem from '../../components/Article/NoteItem';
+import { ContentEnd, LoadingMore, LoadingError, SpinnerLoading } from '../../components/Pure';
+import Screen from '../Screen';
 
-import { recommandDynamicQuery } from "../../graphql/article.graphql";
-import { Mutation, Query, compose, withApollo } from "react-apollo";
-import { connect } from "react-redux";
-import actions from "../../store/actions";
+import { recommandDynamicQuery } from '../../graphql/article.graphql';
+import { Mutation, Query, compose, withApollo } from 'react-apollo';
+import { connect } from 'react-redux';
+import actions from '../../store/actions';
 
-const { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get('window');
 
 const sliderWidth = width;
 const itemWidth = width - 40;
 
 class FollowedScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      //当前tab页，点击tabbar跳转到顶部并刷新页面
-      tabBarOnPress: ({ scene, previousScene, jumpToIndex }) => {
-        let scrollToTop = navigation.getParam("scrollToTop", null);
-        if (scene.focused && scrollToTop) {
-          scrollToTop();
-        } else {
-          jumpToIndex(scene.index);
-        }
-      }
-    };
-  };
+  // static navigationOptions = ({ navigation }) => {
+  //   return {
+  //     //当前tab页，点击tabbar跳转到顶部并刷新页面
+  //     tabBarOnPress: ({ scene, previousScene, jumpToIndex }) => {
+  //       let scrollToTop = navigation.getParam("scrollToTop", null);
+  //       if (scene.focused && scrollToTop) {
+  //         scrollToTop();
+  //       } else {
+  //         jumpToIndex(scene.index);
+  //       }
+  //     }
+  //   };
+  // };
 
   componentWillMount() {
     this.props.navigation.setParams({
@@ -49,7 +49,7 @@ class FollowedScreen extends React.Component {
     if (!user.id) {
       return (
         <ScrollView>
-          <Image style={styles.banner} source={require("../../assets/images/planebg.png")} />
+          <Image style={styles.banner} source={require('../../assets/images/planebg.png')} />
           <RecommendAuthors navigation={navigation} />
         </ScrollView>
       );
@@ -64,7 +64,7 @@ class FollowedScreen extends React.Component {
             if (articles.length < 1) {
               return (
                 <ScrollView>
-                  <Image style={styles.banner} source={require("../../assets/images/planebg.png")} />
+                  <Image style={styles.banner} source={require('../../assets/images/planebg.png')} />
                   <RecommendAuthors navigation={navigation} />
                 </ScrollView>
               );
@@ -130,9 +130,9 @@ class FollowedScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff'
   },
-  banner: { width: Divice.wp("100%"), height: 100, resizeMode: "cover" }
+  banner: { width: Divice.wp('100%'), height: 100, resizeMode: 'cover' }
 });
 
 export default compose(

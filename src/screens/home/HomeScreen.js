@@ -42,7 +42,7 @@ class HomeScreen extends React.Component {
   async componentWillMount() {
     let { users, navigation } = this.props;
 
-    // await this.detectQrcodes();
+    await this.detectQrcodes();
 
     navigation.setParams({
       scrollToTop: this._scrollToTop
@@ -50,6 +50,7 @@ class HomeScreen extends React.Component {
   }
 
   async detectQrcodes() {
+    let { users, navigation } = this.props;
     //检查相册权限
     await utils.Permissions.check();
 
