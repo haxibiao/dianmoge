@@ -3,6 +3,7 @@ package com.dianmoge;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.haxibiao.common.utils.CommonUtil;
 import com.haxibiao.rnpackages.RCTQRCodeImagePackage;
 import com.haxibiao.rnpackages.RCTVideoEditorPackage;
 import com.haxibiao.rnpackages.RCTVodUploaderReactPackage;
@@ -90,5 +91,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+
+    CommonUtil.setApp(this);
   }
 }

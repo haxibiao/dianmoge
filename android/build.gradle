@@ -7,6 +7,7 @@ buildscript {
         compileSdkVersion = 27
         targetSdkVersion = 27
         supportLibVersion = "27.1.1"
+        okhttpVersion = "3.8.1"
     }
     repositories {
         google()
@@ -32,6 +33,32 @@ subprojects {
             }
         }
     }
+}
+
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "27.1.1"
+            }
+        }
+    }
+
+    project.configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.squareup.okhttp3:okhttp') {
+            details.useVersion rootProject.ext.okhttpVersion
+        }
+        if (requested.group == 'com.squareup.okhttp3:okhttp') {
+            details.useVersion rootProject.ext.okhttpVersion
+        }
+//        if (requested.group == 'com.github.bumptech.glide') {
+//            details.useVersion rootProject.ext.glideVersion
+//        }
+    }
+}
 }
 
 allprojects {
