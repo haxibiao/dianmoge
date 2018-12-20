@@ -10,22 +10,10 @@ import HeaderLeft from '../components/Header/HeaderLeft';
 
 const RootStackNavigator = createAppContainer(
   createStackNavigator(router, {
-    navigationOptions: ({ navigation }) => {
-      // Colors.resetStatusBar();
-      return {
-        header: null
-        // headerStyle: {
-        //   paddingHorizontal: 15,
-        //   backgroundColor: Colors.skinColor,
-        //   borderBottomWidth: 1,
-        //   borderBottomColor: Colors.lightBorderColor,
-        //   height: 45,
-        //   elevation: 0,
-        //   shadowOpacity: 0
-        // },
-        // headerLeft: <HeaderLeft navigation={navigation} />
-      };
-    },
+    defaultNavigationOptions: () => ({
+      header: null,
+      gesturesEnabled: true
+    }),
     transitionConfig: () => ({
       transitionSpec: {
         duration: 300,
