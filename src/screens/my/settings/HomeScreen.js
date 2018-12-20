@@ -61,25 +61,27 @@ class HomeScreen extends Component {
 							// 	<SettingItem itemName="字号设置" />
 							// </TouchableOpacity>
 						}
-						<SettingItem
-							itemName="分享推广"
-							rightComponent={
-								<View style={{ marginLeft: 10 }}>
-									<Switch
-										value={addWatermark}
-										onTintColor={'rgba(104, 175, 255, 0.3)'}
-										tintColor={'#ccc'}
-										thumbTintColor={addWatermark ? '#68afff' : Colors.shade4}
-										onValueChange={value => {
-											dispatch(actions.addWatermark(value));
-										}}
-									/>
-								</View>
-							}
-						/>
 						<TouchableOpacity onPress={() => navigation.navigate('推送通知')}>
-							<SettingItem itemName="推送通知" />
+							<SettingItem itemName="推送通知1" />
 						</TouchableOpacity>
+						<View>
+							<SettingItem
+								itemName="分享推广"
+								rightComponent={
+									<View style={{ marginLeft: 10 }}>
+										<Switch
+											value={addWatermark}
+											onTintColor={'rgba(104, 175, 255, 0.3)'}
+											tintColor={'#ccc'}
+											thumbTintColor={addWatermark ? '#68afff' : Colors.shade4}
+											onValueChange={value => {
+												dispatch(actions.addWatermark(value));
+											}}
+										/>
+									</View>
+								}
+							/>
+						</View>
 						<TouchableOpacity onPress={() => this.navigateMiddlewear('黑名单')}>
 							<SettingItem itemName="黑名单" />
 						</TouchableOpacity>
