@@ -7,6 +7,7 @@ import com.haxibiao.common.utils.CommonUtil;
 import com.haxibiao.rnpackages.RCTQRCodeImagePackage;
 import com.haxibiao.rnpackages.RCTVideoEditorPackage;
 import com.haxibiao.rnpackages.RCTVodUploaderReactPackage;
+import com.haxibiao.videoeditor.utils.FFmpegUtil;
 import com.microsoft.codepush.react.CodePush;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
@@ -93,5 +94,6 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
 
     CommonUtil.setApp(this);
+    FFmpegUtil.getInstance(); //避免后面没load没成
   }
 }
