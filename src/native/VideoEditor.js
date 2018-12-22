@@ -16,7 +16,8 @@ let module = NativeModules.VideoEditor;
 let eventPrefix = 'VideoEditor-';
 let deviceEmitter = Platform.OS == 'android' ? DeviceEventEmitter : new NativeEventEmitter(module);
 
-//addWatermark
+const genShareVideo = (videoPath: String) => module.genShareVideo(videoPath);
+
 const addWatermark = (videoPath: String, watermark1: String, watermark2: String) => module.addWatermark(videoPath, watermark1, watermark2);
 
 //addListner

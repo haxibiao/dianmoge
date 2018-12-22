@@ -94,6 +94,6 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
 
     CommonUtil.setApp(this);
-    FFmpegUtil.getInstance(); //避免后面没load没成
+    FFmpegUtil.load(); //避免后面没load没成
   }
 }

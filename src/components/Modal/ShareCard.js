@@ -277,7 +277,7 @@ class ShareCard extends Component {
 			console.log('topWatermark', topWatermark);
 			console.log('bottomWatermark', bottomWatermark);
 
-			LoadingProgress.show('正在压缩视频(分享专用)');
+			LoadingProgress.show('正在生成分享视频');
 			VideoEditor.addListener('progress', data => {
 				console.log('data', data);
 				LoadingProgress.progress(data.progress);
