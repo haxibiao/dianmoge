@@ -3,7 +3,7 @@ package com.dianmoge;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.haxibiao.common.utils.CommonUtil;
+import com.haxibiao.common.utils.AppUtil;
 import com.haxibiao.rnpackages.RCTQRCodeImagePackage;
 import com.haxibiao.rnpackages.RCTVideoEditorPackage;
 import com.haxibiao.rnpackages.RCTVodUploaderReactPackage;
@@ -93,7 +93,7 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
 
-    CommonUtil.setApp(this);
+    AppUtil.setApp(this);
     FFmpegUtil.load(); //避免后面没load没成
   }
 }
