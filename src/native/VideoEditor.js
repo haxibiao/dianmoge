@@ -18,7 +18,9 @@ let deviceEmitter = Platform.OS == 'android' ? DeviceEventEmitter : new NativeEv
 
 const genShareVideo = (videoPath: String) => module.genShareVideo(videoPath);
 
-const addWatermark = (videoPath: String, watermark1: String, watermark2: String) => module.addWatermark(videoPath, watermark1, watermark2);
+const addWaterMark = (videoPath: String, watermark1: String, watermark2: String) => module.addWaterMark(videoPath, watermark1, watermark2);
+
+const addWaterTrail = (videoPath: String, watermark1: String, watermark2: String) => module.addWaterTrail(videoPath, watermark1, watermark2);
 
 //addListner
 const addListener = (eventType: EditEvent, callback: Function) => {
@@ -31,4 +33,4 @@ const addListener = (eventType: EditEvent, callback: Function) => {
 	});
 };
 
-export default { addListener, addWatermark };
+export default { addListener, addWaterMark, addWaterTrail };

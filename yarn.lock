@@ -6020,10 +6020,10 @@ rimraf@~2.2.6:
   resolved "http://registry.npm.taobao.org/rimraf/download/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
-rn-fetch-blob@^0.10.14:
-  version "0.10.14"
-  resolved "http://registry.npm.taobao.org/rn-fetch-blob/download/rn-fetch-blob-0.10.14.tgz#341bb8f6417f944dd9a592f81fbdbc0cbde32b9d"
-  integrity sha1-NBu49kF/lE3ZpZL4H728DL3jK50=
+rn-fetch-blob@^0.10.15:
+  version "0.10.15"
+  resolved "http://registry.npm.taobao.org/rn-fetch-blob/download/rn-fetch-blob-0.10.15.tgz#3526860c1c57e0bf4c09bdbe409c919264afffba"
+  integrity sha1-NSaGDBxX4L9MCb2+QJyRkmSv/7o=
   dependencies:
     base-64 "0.1.0"
     glob "7.0.6"

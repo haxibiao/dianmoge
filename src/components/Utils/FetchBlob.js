@@ -1,7 +1,7 @@
 import { Dimensions, Platform, StatusBar, PixelRatio } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 
-function download({ url, scan, id, onSuccessed, onFailed }) {
+function download({ url, id, onSuccessed, onFailed }) {
 	return new Promise((resolve, reject) => {
 		LoadingProgress.show();
 		let dirs = RNFetchBlob.fs.dirs;
@@ -10,15 +10,12 @@ function download({ url, scan, id, onSuccessed, onFailed }) {
 		if (Platform.OS === 'android') {
 			options = {
 				path: dirs.DCIMDir + '/' + id + '.mp4'
-				// useDownloadManager: true
-				// fileCache: true,
-				// appendExt: 'mp4'
 			};
 		} else {
 			options = {
-				// path: dirs.DocumentDir + '/' + id + '.mp4'
-				fileCache: true,
-				appendExt: 'mp4'
+				path: dirs.DocumentDir + '/' + id + '.mp4'
+				// fileCache: true,
+				// appendExt: 'mp4'
 			};
 		}
 		RNFetchBlob.config(options)
@@ -33,9 +30,7 @@ function download({ url, scan, id, onSuccessed, onFailed }) {
 			.then(res => {
 				//不加水印的视频直接在相册了，需要扫描相册
 				if (Platform.OS === 'android') {
-					if (scan) {
-						RNFetchBlob.fs.scanFile([{ path: res.path(), mime: 'video/mp4' }]);
-					}
+					RNFetchBlob.fs.scanFile([{ path: res.path(), mime: 'video/mp4' }]);
 				}
 				let filepath = res.path();
 				console.log('rn fetch file saved to ', filepath);

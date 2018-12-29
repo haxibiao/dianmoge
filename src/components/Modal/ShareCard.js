@@ -286,7 +286,7 @@ class ShareCard extends Component {
 				console.log('completed', completed);
 				LoadingProgress.hide();
 			});
-			VideoEditor.addWatermark(videoPath, topWatermark, bottomWatermark);
+			VideoEditor.addWaterMark(videoPath, topWatermark, bottomWatermark);
 		}
 	};
 

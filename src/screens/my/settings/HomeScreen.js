@@ -62,7 +62,7 @@ class HomeScreen extends Component {
 							// </TouchableOpacity>
 						}
 						<TouchableOpacity onPress={() => navigation.navigate('推送通知')}>
-							<SettingItem itemName="推送通知1" />
+							<SettingItem itemName="推送通知" />
 						</TouchableOpacity>
 						<View>
 							<SettingItem
