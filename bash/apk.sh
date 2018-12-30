@@ -15,10 +15,17 @@ function genapk() {
 
 	react-native-asset
 
+	# echo "生成 index.android.bundle ...."
 	# react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/generated/assets
 
 	cd ./android
-	./gradlew clean assemble
+	./gradlew clean assembleRelease
+
+	echo "修复内测包打包后缺少 index.android.bundle ..."
+	/bin/cp -rf app/build/intermediates/assets/release/index.android.bundle app/build/intermediates/assets/staging/
+
+	echo "开始生成内测包..............................."
+	./gradlew assembleStaging
 }
 
 function upload_apk() {

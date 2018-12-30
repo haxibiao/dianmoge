@@ -72,8 +72,11 @@ import com.android.build.OutputFile
  * ]
  */
 
+// Configures the bundleJS commands for React-Native
 project.ext.react = [
-    entryFile: "index.js"
+    entryFile: "index.js",
+    devDisabledInStaging: true,
+    jsBundleDirStaging: "$buildDir/intermediates/assets/staging",
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -109,6 +112,14 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE) 
+            storePassword MYAPP_RELEASE_STORE_PASSWORD 
+            keyAlias MYAPP_RELEASE_KEY_ALIAS 
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD 
+        } 
+    }
     splits {
         abi {
             reset()
@@ -118,8 +129,25 @@ android {
         }
     }
     buildTypes {
-        release {
+         debug {
+             applicationIdSuffix ".debug"
+            // Note: CodePush updates should not be tested in Debug mode as they are overriden by the RN packager. However, because CodePush checks for updates in all modes, we must supply a key.
+            buildConfigField "String", "CODEPUSH_KEY", '""'
+            
+        }
+        staging {
+            initWith release
+            applicationIdSuffix ".staging"
+            matchingFallbacks = ['release']
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_staging + '"'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled enableProguardInReleaseBuilds
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
